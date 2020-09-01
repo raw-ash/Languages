@@ -3,7 +3,7 @@ open Core
 let do_hash file =
   Md5.digest_file_blocking file
   |> Md5.to_hex
-  |> print_endlin
+  |> print_endline
 
 let filename_param =
   let open Command.Param in
@@ -25,3 +25,6 @@ let command =
   #show Command.basic;;
   val basic : unit Command.basic_command 
 *)
+
+let () =
+  Command.run ~version:"1.0" ~build_info:"RWO" command
