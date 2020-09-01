@@ -26,5 +26,14 @@ let command =
   val basic : unit Command.basic_command 
 *)
 
+let command' =
+  Command.basic
+  ~summary:"Generate an MD5 hash of the input data"
+  ~readme:(fun () -> "More detailed information") (* Optional Argument *)
+  Command.Param.(
+    map (anon ("filename" %: string))
+      ~f:(fun filename -> (fun () -> do_hash filename))
+  )
+
 let () =
-  Command.run ~version:"1.0" ~build_info:"RWO" command
+  Command.run ~version:"1.0" ~build_info:"RWO" command'
